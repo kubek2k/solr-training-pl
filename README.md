@@ -26,3 +26,12 @@ Jesli cos nie zadziala
 ----------------------
 Wazne zeby na komputerze miec Jave (SOLR wymaga), oraz Ruby (wystarczy podstawowa instalacja). 
 W razie problemow - w poniedzialek moge pomoc.
+
+
+Linki
+-----
+Jakby co:
+
+http://www.java.com/en/
+
+http://www.ruby-lang.org/pl/downloads/
