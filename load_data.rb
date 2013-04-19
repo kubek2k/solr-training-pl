@@ -11,7 +11,7 @@ documents_directory = ARGV[1]
 
 idx = 0
 Dir.foreach(documents_directory) do |item|
-    next if item == '.' or item == '..'
+    next if item == '.' or item == '..' or !(/.*\.json/ =~ item)
 
     open(documents_directory + "/" + item, "r") { |file|
         content = file.read

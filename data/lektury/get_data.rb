@@ -23,6 +23,7 @@ json.each { |book|
     authors = book_json['authors'].collect { |a| a['name'] }
     kinds = book_json['kinds'].collect { |k| k['name'] }
     genres = book_json['genres'].collect { |g| g['name'] }
+    url = book['url']
 
     p "#{i} Saving document: #{book_file_name}"
     open("documents/#{book_file_name}.json", "w") { |file|
@@ -35,6 +36,7 @@ json.each { |book|
             :author => authors,
             :genre => genres,
             :kind => kinds,
+            :url => url,
         }))
     }
 
