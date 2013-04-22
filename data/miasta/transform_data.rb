@@ -21,8 +21,7 @@ open(ARGV[0], 'r') { |file|
             out.write({
                 :name => city['nazwa'],
                 :url => city['link'],
-                :geolatitude => geolat.to_s,
-                :geolongitude => geolon.to_s,
+                :coordinates => geolat.to_s + "," + geolon.to_s,
                 :population => city['ludnosc'],
             }.to_json)
         }

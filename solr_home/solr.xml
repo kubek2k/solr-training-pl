@@ -49,5 +49,6 @@
   -->
   <cores adminPath="/admin/cores" defaultCoreName="lektury" host="${host:}" hostPort="${jetty.port:}" hostContext="${hostContext:}" zkClientTimeout="${zkClientTimeout:15000}">
     <core name="lektury" instanceDir="lektury" />
+    <core name="miasta" instanceDir="miasta" />
   </cores>
 </solr>
