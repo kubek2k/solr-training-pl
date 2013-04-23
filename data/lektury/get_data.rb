@@ -3,8 +3,11 @@ require 'rubygems'
 require 'json/ext'
 
 class String
-    def force_encoding(s) 
-        return self
+    def method_missing(m, *args, &block)
+        if (m == :force_encoding) then
+            return self
+        end
+        super.method_missing(m, args, block)
     end
 end
 
