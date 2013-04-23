@@ -1,6 +1,12 @@
 require 'net/http'
 require 'rubygems'
-require 'json'
+require 'json/ext'
+
+class String
+    def force_encoding(s) 
+        return self
+    end
+end
 
 main_json_string = Net::HTTP.get(URI('http://wolnelektury.pl/api/books/'))
 
@@ -14,10 +20,11 @@ json.each { |book|
     end
 
     book_api = book['href']
-
-    book_json = JSON.parse(Net::HTTP.get(URI(book['href'])))
+    response = Net::HTTP.get_response(URI(book['href']))
+    book_json = JSON.parse(response.body.force_encoding('UTF-8'))
     book_file_name = (/^.*\/([^\/]+)\/$/.match(book['href']))[1]
-    book_txt = Net::HTTP.get(URI(book_json['txt']))
+    response = Net::HTTP.get_response(URI(book_json['txt'])) 
+    book_txt = response.body.force_encoding('UTF-8')
 
     epochs = book_json['epochs'].collect { |e| e['name'] }
     authors = book_json['authors'].collect { |a| a['name'] }
@@ -27,7 +34,7 @@ json.each { |book|
 
     p "#{i} Saving document: #{book_file_name}"
     open("documents/#{book_file_name}.json", "w") { |file|
-        file.write(JSON.pretty_generate({
+        file.write({
             :id => i,
             :text => book_txt, 
             :title => book_json['title'],
@@ -37,7 +44,7 @@ json.each { |book|
             :genre => genres,
             :kind => kinds,
             :url => url,
-        }))
+        }.to_json)
     }
 
     i += 1
