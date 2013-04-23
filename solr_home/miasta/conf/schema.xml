@@ -192,9 +192,9 @@
     <field name="url" type="string" indexed="true" stored="true" />
     <field name="population" type="long" indexed="true" stored="true" />
 
-    <field name="coordinates" type="location" indexed="false" stored="true" />
+    <field name="coordinates" type="location" indexed="true" stored="true" />
 
-    <dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false"/>
+    <dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="true"/>
 
    </fields>
 
